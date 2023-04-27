@@ -4,22 +4,24 @@
 
 ### 准备
 
-1. 支持的微信版本下载 [WeChatSetup3.6.0.18.exe](https://ghproxy.com/https://github.com/tom-snow/wechat-windows-versions/releases/download/v3.6.0.18/WeChatSetup-3.6.0.18.exe) 并安装、登录。
+1. 安装`Git`和`nodejs`
 
-2. 下载 [funtool_3.6.0.18-1.0.0015非注入版.exe](https://ghproxy.com/https://raw.githubusercontent.com/x-dr/wechat-bot/main/funtool/funtool_3.6.0.18-1.0.0015非注入版.exe) 并运行 。
+2. 支持的微信版本下载 [WeChatSetup3.6.0.18.exe](https://ghproxy.com/https://github.com/tom-snow/wechat-windows-versions/releases/download/v3.6.0.18/WeChatSetup-3.6.0.18.exe) 并安装、登录。
+
+3. 下载 [funtool_3.6.0.18-1.0.0015非注入版.exe](https://ghproxy.com/https://raw.githubusercontent.com/x-dr/wechat-bot/main/funtool/funtool_3.6.0.18-1.0.0015非注入版.exe) 并运行 。
 
 ![funtool_3.6.0.18-1.0.0015非注入版.exe](./docs/img/funtool.png)
 
 
 
 
-3. 安装`pm2`方便进程守护
+4. 安装`pm2`方便进程守护
 
 ```shell
 npm install pm2 -g
 ```
 
-4. 拉取项目并修改`.env` 文件
+5. 拉取项目并修改`.env` 文件
 
 ```shell
 git clone https://github.com/x-dr/wechat-bot.git
