@@ -1,0 +1,37 @@
+{
+  "name": "wechat-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/x-dr/wechat-bot.git"
+  },
+  "keywords": [
+    "bot"
+  ],
+  "author": "x-dr",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/x-dr/wechat-bot/issues"
+  },
+  "homepage": "https://github.com/x-dr/wechat-bot#readme",
+  "dependencies": {
+    "axios": "^1.3.6",
+    "chatgpt": "^5.2.2",
+    "dotenv": "^16.0.3",
+    "node-replicate": "^2.0.0",
+    "node-schedule": "^2.1.1",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6",
+    "ws": "^8.13.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}

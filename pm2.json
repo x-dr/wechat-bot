@@ -1,0 +1,13 @@
+{
+    "name": "wechatBot",
+    "script": "index.js",
+    "log_date_format": "YYYY-MM-DD HH:mm Z",
+    "error_file": "./log/err.log",
+    "out_file": "./log/out.log",
+    "pid_file": "./run.pid",
+    "instances": 1,
+    "min_uptime": "20s",
+    "max_restarts": 50,
+    "watch": false,
+    "exec_interpreter": "node"
+}
