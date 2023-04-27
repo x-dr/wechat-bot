@@ -8,6 +8,9 @@
 
 2. 下载 [funtool_3.6.0.18-1.0.0015非注入版.exe](https://ghproxy.com/https://raw.githubusercontent.com/x-dr/wechat-bot/main/funtool/funtool_3.6.0.18-1.0.0015非注入版.exe) 并运行 。
 
+![funtool_3.6.0.18-1.0.0015非注入版.exe](./docs/img/funtool.png)
+
+
 
 
 3. 安装`pm2`方便进程守护
@@ -50,6 +53,23 @@ npm i
 pm2 start pm2.json
 
 ```
+
+### 使用
+
++ 智能回复
+```
+/c xxxx   #对话
+
+/c 结束对话  #结束本轮对话
+
+```
+
+
+> 机器人体验
+
+<img src="docs/img/wxbot.jpg"  height="50%" width="50%">
+
+
 
 ### 感谢
 
