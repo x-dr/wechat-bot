@@ -4,6 +4,10 @@
 
 ### 准备
 
+#### 本地部署
+
+> 仅支持window系统
+
 1. 安装`Git`和`nodejs`
 
 2. 支持的微信版本下载 [WeChatSetup3.6.0.18.exe](https://ghproxy.com/https://github.com/tom-snow/wechat-windows-versions/releases/download/v3.6.0.18/WeChatSetup-3.6.0.18.exe) 并安装、登录。
@@ -55,6 +59,45 @@ npm i
 pm2 start pm2.json
 
 ```
+
+#### 使用Docker部署
+
++ 拉取镜像
+
+```shell
+docker pull gindex/wechat-box:latest
+```
+
++ 运行
+
+```shell
+docker run -itd  --name wechat-service  \
+    -e TARGET_AUTO_RESTART="yes" \
+    -e TARGET_WECHAT_BOT="yes" \
+    -e UPDATE_WECHAT_BOT="yes" \
+    -e OPENAI_API_KEY="sk-xxxxxxxxxxxx" \
+    -e PROXY_API="https://openai.1rmb.tk/v1" \
+    -e SERVER_HOST='127.0.0.1:5555' \
+    -e TARGET_CMD=wechat-start \
+    -e VNC_PASSWORD=password \
+    -p 8080:8080 -p 5555:5555 -p 5900:5900 \
+    --add-host=dldir1.qq.com:127.0.0.1 \
+    gindex/wechat-box:latest
+
+```
+#### 环境变量
+
+| Env | Default | Example | Description |
+| - | - | - | - |
+| `TARGET_AUTO_RESTART` | no | `yes` | TARGET_LOG_FILE |
+| `TARGET_WECHAT_BOT` | no | `yes` | 是否启用微信机器人 |
+| `UPDATE_WECHAT_BOT` | no | `yes` | 是否自动更新微信机器人 |
+| `OPENAI_API_KEY` | `null` | `sk-xxxx` | OPENAI_API_KEY |
+| `PROXY_API` | `https://api.openai.com/v1` | `https://openai.1rmb.tk/v1` | 反代接口地址 |
+| `SERVER_HOST` | `null` | `127.0.0.1:5555` | Clients IP address range. |
+| `TARGET_CMD` | `null` | `wechat-start` | 重启时执行的命令 |
+| `VNC_PASSWORD` | `password` | `bot` | 访问VNC密码 |
+
 
 ### 使用
 
