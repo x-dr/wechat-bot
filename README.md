@@ -88,6 +88,17 @@ docker run -itd  --name wechat-service  \
 + 登录微信
 打开`http://your-ip:8080/vnc.html`,登录微信并启动hook软件（参考本地部署）
 
++ 运行bot
+
+```shell
+docker exec -it wechat-service bash
+```
+
+```shell
+startbot
+```
+![wechat](./docs/img/wechat_bot.png)
+
 #### 环境变量
 
 | Env | Default | Example | Description |
