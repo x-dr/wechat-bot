@@ -85,6 +85,9 @@ docker run -itd  --name wechat-service  \
     gindex/wechat-box:latest
 
 ```
++ 登录微信
+打开`http://your-ip:8080/vnc.html`,登录微信并启动hook软件（参考本地部署）
+
 #### 环境变量
 
 | Env | Default | Example | Description |
