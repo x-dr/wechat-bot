@@ -132,6 +132,6 @@ startbot
 
 ### 感谢
 
-[@fuergaosi233](https://github.com/fuergaosi233/wechat-chatgpt)
+[@cixingguangming55555](https://github.com/cixingguangming55555/wechat-bot)
 
 [@transitive-bullshit](https://github.com/transitive-bullshit/chatgpt-api)
