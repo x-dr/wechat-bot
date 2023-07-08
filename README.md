@@ -134,4 +134,3 @@ startbot
 
 [@cixingguangming55555](https://github.com/cixingguangming55555/wechat-bot)
 
-[@transitive-bullshit](https://github.com/transitive-bullshit/chatgpt-api)
