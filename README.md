@@ -45,6 +45,8 @@ OPENAI_API_KEY ='sk-xxxxxxxxxxxxxxx'
 # 反代的api,为空时为默认值 https://api.openai.com 
 PROXY_API = 'https://openai.1rmb.tk/v1'
 
+# # OpenAI API Model - https://platform.openai.com/docs/models
+OPENAI_API_MODEL= 'gpt-3.5-turbo-16k'
 
 #运行微信服务的ip+端口
 SERVER_HOST = '127.0.0.1:5555'
@@ -133,4 +135,5 @@ startbot
 ### 感谢
 
 [@cixingguangming55555](https://github.com/cixingguangming55555/wechat-bot)
+
 
