@@ -56,6 +56,19 @@ OPENAI_API_MODEL= 'gpt-3.5-turbo-16k'
 #运行微信服务的ip+端口
 SERVER_HOST = '127.0.0.1:5555'
 
+#星火认知大模型
+#服务接口认证信息
+#获取地址https://console.xfyun.cn/services/bm3
+#APIKey
+sparkAPIKey = 'xxxxxxxxxxxxx'
+#APISecret
+sparkAPISecret = 'xxxxxxxxxxxxxx'
+#APPID
+sparkAPPID = 'xxxxxxxxxxxxxx'
+#UID任意填写
+sparkUID = 'wx'
+
+
 ```
 
 6. 运行
@@ -124,16 +137,20 @@ startbot
 
 + 智能回复
 ```
-/c xxxx   #对话
+/c xxxx   #对话 chatgpt
+
+/s xxx    #对话 星火认知大模型
 
 /c 结束对话  #结束本轮对话
 
 ```
 
+<img src="docs/img/wxspark.jpg"  height="50%" width="50%">
 
 > 机器人体验
 
 <img src="docs/img/wxbot.jpg"  height="50%" width="50%">
+
 
 
 

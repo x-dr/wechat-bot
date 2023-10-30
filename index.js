@@ -1,7 +1,7 @@
 import WebSocket from 'ws'
 import rp from 'request-promise'
 import chatgptReply from "./utils/chatgpt.js"
-// const rp = require('request-promise');
+import sparkReply from "./utils/sparkmsg.js"
 import { containsTextFileLine } from "./utils/checkword.js"
 import * as dotenv from 'dotenv' // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
 dotenv.config()
@@ -153,6 +153,14 @@ ws.on('message', async (data) => {
                 //    await  send_txt_msg1(j.wxid, j.content)
                 const new_msg = await containsTextFileLine(msg)
                 ws.send(send_txt_msg(roomid, new_msg));
+            }
+            if(j.content.startsWith('/s')){
+                const raw_msg = j.content.replace('/s', '').trim()
+                // userid, nick, roomid, msgcontent
+                const msg = await sparkReply(roomid, userid, nick, raw_msg)
+                //    await  send_txt_msg1(j.wxid, j.content)
+                // const new_msg = await containsTextFileLine(msg)
+                ws.send(send_txt_msg(roomid, msg));
             }
             break;
         case HEART_BEAT:
