@@ -56,6 +56,10 @@ OPENAI_API_MODEL= 'gpt-3.5-turbo-16k'
 #运行微信服务的ip+端口
 SERVER_HOST = '127.0.0.1:5555'
 
+
+#google gemini的key，需要自己去获取 ，地址：https://ai.google.dev/tutorials/setup?hl=zh-cn
+GEMINI_API_KEY=''
+
 #星火认知大模型
 #服务接口认证信息
 #获取地址https://console.xfyun.cn/services/bm3
