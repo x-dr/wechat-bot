@@ -1,5 +1,7 @@
 import schedule from "node-schedule"
-import { requestPromise } from './req.js'
+import {
+  requestPromise
+} from './req.js'
 import * as dotenv from 'dotenv' // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
 dotenv.config()
 
@@ -16,22 +18,28 @@ const conversationPool = new Map();
 async function chatgptReply(wxid, id, nick, rawmsg) {
   console.log(`chat:${wxid}-------${id}\nrawmsg: ${rawmsg}`);
   let response = '🤒🤒🤒出了一点小问题，请稍后重试下...';
-  if (rawmsg === "清除所有对话" && id === "wxid_8wat4euufsc522") {
-    conversationPool.clear()
-    response = `所有的对话已清空`
-    return response
-  } else if (rawmsg === "结束对话") {
+  if (rawmsg === "结束对话") {
     conversationPool.delete(id);
     response = `${nick}的对话已结束`
     return response
   } else {
 
     const datatime = Date.now()
-    const messages = conversationPool.get(id) ?
-      [...conversationPool.get(id).messages, { role: 'user', content: rawmsg }] :
-      [systemMessage, { role: 'user', content: rawmsg }];
-    const newMessage = { datatime: datatime, messages };
-    const data = { model: OPENAI_MODEL, messages };
+    const messages = conversationPool.get(id) ? [...conversationPool.get(id).messages, {
+      role: 'user',
+      content: rawmsg
+    }] : [systemMessage, {
+      role: 'user',
+      content: rawmsg
+    }];
+    const newMessage = {
+      datatime: datatime,
+      messages
+    };
+    const data = {
+      model: OPENAI_MODEL,
+      messages
+    };
     let raw_response
 
     try {

@@ -141,7 +141,11 @@ startbot
 
 /s xxx    #对话 星火认知大模型
 
+/g xxx    #对话  Google Gemini
+
 /c 结束对话  #结束本轮对话
+
+
 
 ```
 
