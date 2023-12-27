@@ -48,7 +48,7 @@ git clone https://github.com/x-dr/wechat-bot.git
 OPENAI_API_KEY ='sk-xxxxxxxxxxxxxxx'
 
 # 反代的api,为空时为默认值 https://api.openai.com 
-PROXY_API = 'https://openai.1rmb.tk/v1'
+PROXY_API = 'https://openai.1rmb.tk'
 
 # # OpenAI API Model - https://platform.openai.com/docs/models
 OPENAI_API_MODEL= 'gpt-3.5-turbo-16k'
