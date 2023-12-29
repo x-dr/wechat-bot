@@ -56,6 +56,7 @@ async function chatgptReply(wxid, id, nick, rawmsg) {
       })
 
       // 检查返回的数据是否包含 choices 字段
+      console.log(raw_response);
       if (raw_response.data.choices && raw_response.data.choices.length > 0) {
         const response = raw_response.data.choices[0].message;
         console.log(`chat:${wxid}------${id}\nresponse: ${response.content}`);

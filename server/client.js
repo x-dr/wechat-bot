@@ -13,30 +13,29 @@ import rp from 'request-promise'
 import * as dotenv from 'dotenv' // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
 dotenv.config()
 const SERVER_HOST = process.env.SERVER_HOST
+import MessageType from './messagetype.js'
+
 
 const ws = new WebSocket(`ws://${SERVER_HOST}`);
 const url = `http://${SERVER_HOST}`;
-const HEART_BEAT = 5005;
-const RECV_TXT_MSG = 1;
-const RECV_PIC_MSG = 3;
-const USER_LIST = 5000;
-const GET_USER_LIST_SUCCSESS = 5001;
-const GET_USER_LIST_FAIL = 5002;
-const TXT_MSG = 555;
-const PIC_MSG = 500;
-const AT_MSG = 550;
-const CHATROOM_MEMBER = 5010;
-const CHATROOM_MEMBER_NICK = 5020;
-const PERSONAL_INFO = 6500;
-const DEBUG_SWITCH = 6000;
-const PERSONAL_DETAIL = 6550;
-const DESTROY_ALL = 9999;
-const NEW_FRIEND_REQUEST = 37;//微信好友请求消息
-const AGREE_TO_FRIEND_REQUEST = 10000;//同意微信好友请求消息
-const ATTATCH_FILE = 5003;
-
-
-
+// const HEART_BEAT = 5005;
+// const RECV_TXT_MSG = 1;
+// const RECV_PIC_MSG = 3;
+// const USER_LIST = 5000;
+// const GET_USER_LIST_SUCCSESS = 5001;
+// const GET_USER_LIST_FAIL = 5002;
+// const TXT_MSG = 555;
+// const PIC_MSG = 500;
+// const AT_MSG = 550;
+// const CHATROOM_MEMBER = 5010;
+// const CHATROOM_MEMBER_NICK = 5020;
+// const PERSONAL_INFO = 6500;
+// const DEBUG_SWITCH = 6000;
+// const PERSONAL_DETAIL = 6550;
+// const DESTROY_ALL = 9999;
+// const NEW_FRIEND_REQUEST = 37;//微信好友请求消息
+// const AGREE_TO_FRIEND_REQUEST = 10000;//同意微信好友请求消息
+// const ATTATCH_FILE = 5003;
 
 
 export const getid = () => {
@@ -44,12 +43,11 @@ export const getid = () => {
     return id.toString();
 }
 
-
 export const get_chat_nick_p = (s_wxid, s_roomid) => {
 
     const j = {
         id: getid(),
-        type: CHATROOM_MEMBER_NICK,
+        type: MessageType.CHATROOM_MEMBER_NICK,
         wxid: s_wxid,
         roomid: s_roomid,
         content: 'null',
@@ -62,11 +60,12 @@ export const get_chat_nick_p = (s_wxid, s_roomid) => {
     return s;
 
 }
+
 export const get_chat_nick = () => {
     const j = {
         id: getid(),
-        type: CHATROOM_MEMBER_NICK,
-        content: '24354102562@chatroom',//chatroom id 23023281066@chatroom  17339716569@chatroom
+        type: MessageType.CHATROOM_MEMBER_NICK,
+        content: '24354102562@chatroom',
         //5325308046@chatroom
         //5629903523@chatroom
         wxid: 'ROOT'
@@ -85,17 +84,9 @@ export const handle_nick = (j) => {
 export const handle_memberlist = (j) => {
     const data = j.content;
     let i = 0;
-    //get_chat_nick_p(j.roomid);
     for (const item of data) {
         console.log("---------------", item.room_id, "--------------------");
-        //console.log("------"+item.roomid+"--------");
-        //ws.send(get_chat_nick_p(item.roomid));
         const memberlist = item.member;
-
-        //console.log("hh",item.address,memberlist);
-
-        //const len = memberlist.length();
-        //console.log(memberlist);
         for (const m of memberlist) {
             console.log(m);//获得每个成员的wxid
         }
@@ -108,7 +99,7 @@ export const handle_memberlist = (j) => {
 export const get_chatroom_memberlist = () => {
     const j = {
         id: getid(),
-        type: CHATROOM_MEMBER,
+        type: MessageType.CHATROOM_MEMBER,
         roomid: 'null',//null
         wxid: 'null',//not null
         content: 'null',//not null
@@ -120,15 +111,10 @@ export const get_chatroom_memberlist = () => {
     return s;
 }
 export const send_attatch = () => {
-    /*const j={
-      id:getid(),
-      type:ATTATCH_FILE,
-      content:'C:\\tmp\\log.txt',
-      wxid:'23023281066@chatroom'
-    };*/
+
     const j = {
         id: getid(),
-        type: ATTATCH_FILE,
+        type: MessageType.ATTATCH_FILE,
         wxid: '23023281066@chatroom',//roomid或wxid,必填
         roomid: 'null',//此处为空
         content: 'C:\\tmp\\log.7z',
@@ -143,7 +129,7 @@ export const send_attatch = () => {
 export const send_at_msg = (roomid, wxid, content, nickname = '') => {
     const j = {
         id: getid(),
-        type: AT_MSG,
+        type: MessageType.AT_MSG,
         roomid: roomid,//not null  23023281066@chatroom
         wxid: wxid,//at
         content: content,//not null
@@ -158,7 +144,7 @@ export const send_at_msg = (roomid, wxid, content, nickname = '') => {
 export const send_pic_msg = () => {
     const j = {
         id: getid(),
-        type: PIC_MSG,
+        type: MessageType.PIC_MSG,
         wxid: '22693709597@chatroom',
         roomid: 'null',
         content: "img",
@@ -189,7 +175,7 @@ export const get_personal_detail = () => {
 export const get_personal_info = () => {
     const j = {
         id: getid(),
-        type: PERSONAL_INFO,
+        type: MessageType.PERSONAL_INFO,
         wxid: 'null',
         roomid: 'null',
         content: 'null',
@@ -206,7 +192,7 @@ export const send_txt_msg = (wxid, content) => {
     //必须按照该json格式，否则服务端会出异常
     const j = {
         id: getid(),
-        type: TXT_MSG,
+        type: MessageType.TXT_MSG,
         wxid: wxid,//roomid或wxid,必填
         roomid: 'null',//此处为空
         content: content,
@@ -237,7 +223,7 @@ export const get_contact_list = () => {
 
     const j = {
         id: getid(),
-        type: USER_LIST,
+        type: MessageType.USER_LIST,
         roomid: 'null',//null
         wxid: 'null',//not null
         content: 'null',//not null
@@ -295,7 +281,7 @@ export const heartbeat = (j) => {
 export const debug_switch = () => {
     const qs = {
         "id": getid(),
-        "type": DEBUG_SWITCH,
+        "type": MessageType.DEBUG_SWITCH,
         "content": "on",
         "wxid": "",
     }
@@ -312,7 +298,7 @@ export const get_member_nick = async (user_id, roomid) => {
 
     const jpara = {
         id: getid(),
-        type: CHATROOM_MEMBER_NICK,
+        type: MessageType.CHATROOM_MEMBER_NICK,
         wxid: user_id,
         roomid: roomid,//23023281066@chatroom
         content: 'null',

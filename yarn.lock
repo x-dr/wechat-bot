@@ -156,6 +156,11 @@ dashdash@^1.12.0:
   dependencies:
     assert-plus "^1.0.0"
 
+dayjs@^1.11.10:
+  version "1.11.10"
+  resolved "https://registry.npmjs.org/dayjs/-/dayjs-1.11.10.tgz"
+  integrity sha512-vjAczensTgRcqDERK0SR2XMwsF/tSvnvlv6VcF2GIhg6Sx4yOIt/irsr1RDJsKiIyBzJDpCoXiWWq28MqH2cnQ==
+
 debug@^3.2.7:
   version "3.2.7"
   resolved "https://registry.npmjs.org/debug/-/debug-3.2.7.tgz"
@@ -643,7 +648,7 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-ws@^8.13.0:
-  version "8.13.0"
-  resolved "https://registry.npmjs.org/ws/-/ws-8.13.0.tgz"
-  integrity sha512-x9vcZYTrFPC7aSIbj7sRCYo7L/Xb8Iy+pW0ng0wt2vCJv7M9HOMy0UoN3rr+IFC7hb7vXoqS+P9ktyLLLhO+LA==
+ws@^8.14.2:
+  version "8.16.0"
+  resolved "https://registry.npmjs.org/ws/-/ws-8.16.0.tgz"
+  integrity sha512-HS0c//TP7Ina87TfiPUz1rQzMhHrl/SG2guqRcTOIUYD2q8uhUdNHZYJUaQ8aTGPzCh+c6oawMKW35nFl1dxyQ==
