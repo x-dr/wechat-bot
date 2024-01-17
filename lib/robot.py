@@ -222,7 +222,13 @@ class Robot():
 
     def sayHiToNewFriend(self, msg: WxMsg) -> None:
         nickName = re.findall(r"你已添加了(.*)，现在可以开始聊天了。", msg.content)
-        welcome = self.config.WWLCOME
+        welcome = """/help 查看帮助信息
+/ai 提问或交谈
+/sw:gemini 切换为 gemini-pro 模型
+/sw:chatgpt 切换为 gpt-3.5-turbo 模型
+/sw:spark 切换为 spark 模型
+/sw 随机选择模型
+/new 重置上下文内容"""
         if nickName:
             # 添加了好友，更新好友列表
             self.allContacts[msg.sender] = nickName[0]
@@ -240,7 +246,7 @@ class Robot():
 
             except Exception as e:
                 self.LOG.error(f"同意好友出错：{e}")
-                
+
     def send_pat_msg(self, msg: WxMsg) -> None:
         """处理被 @ 消息
         :param msg: 微信消息结构
