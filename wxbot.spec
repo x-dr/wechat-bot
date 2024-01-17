@@ -5,7 +5,7 @@ a = Analysis(
     ['main.py'],
     pathex=[],
     binaries=[],
-    datas=[('wcferry', 'wcferry')],
+    datas=[('wcferry', 'wcferry'),(config.yaml;.)],
     hiddenimports=['uvicorn', 'wcferry', '_cffi_backend','python-dotenv'],
     hookspath=[],
     hooksconfig={},
