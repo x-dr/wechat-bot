@@ -230,7 +230,17 @@ class Robot():
                 f"Hi {nickName[0]}，我自动通过了你的好友请求。\n{welcome}", msg.sender)
 
 
+    def autoAcceptFriendRequest(self, msg: WxMsg) -> None:
+            try:
+                xml = ET.fromstring(msg.content)
+                v3 = xml.attrib["encryptusername"]
+                v4 = xml.attrib["ticket"]
+                scene = int(xml.attrib["scene"])
+                self.wcf.accept_new_friend(v3, v4, scene)   
 
+            except Exception as e:
+                self.LOG.error(f"同意好友出错：{e}")
+                
     def send_pat_msg(self, msg: WxMsg) -> None:
         """处理被 @ 消息
         :param msg: 微信消息结构
