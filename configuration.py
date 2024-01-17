@@ -14,10 +14,10 @@ class Config(object):
         self.reload()
 
     def _load_config(self) -> dict:
-        exe_dir = os.path.dirname(sys.executable)
+        pwd = os.path.dirname(sys.executable)
     
     # 拼接相对路径
-        pwd = os.path.join(exe_dir, 'config.yaml')
+        # pwd = os.path.join(exe_dir, 'config.yaml')
         # pwd = os.path.dirname(os.path.abspath(__file__))
         try:
             with open(f"{pwd}/config.yaml", "rb") as fp:
