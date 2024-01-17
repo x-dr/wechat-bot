@@ -26,7 +26,6 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           name: ${{ github.event.inputs.tag }}
-          body_path: ./RELEASE.md
           files: |
             dist/wxbot.exe
             WeChatSetup-*    
