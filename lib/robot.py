@@ -161,7 +161,7 @@ class Robot():
             else:
                 if msg.content.startswith("/ai"):
                     self.get_ai_chat(msg)
-                if msg.content=="/new":
+                elif msg.content=="/new":
                     set_history_msg(msg.sender,[])
                     self.sendTextMsg(f"已清空对话",msg.sender)
                 else:
