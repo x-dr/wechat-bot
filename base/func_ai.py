@@ -58,7 +58,7 @@ def ai_chat(message, id):
                 if 'candidates' in msg_json and msg_json['candidates'] and 'content' in msg_json['candidates'][0]:
                     msg = msg_json['candidates'][0]['content']['parts'][0]['text']
                     set_history_msg(id, msgMap)
-                    bot_msg = msg_json['candidates'][0]['content']['parts'][0]
+                    bot_msg = msg_json['candidates'][0]['content']
                     get_history_msg(id).append(bot_msg)
                     return msg
                 else:
