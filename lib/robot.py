@@ -151,7 +151,7 @@ class Robot():
 
         elif msg.type == 0x01:  # 文本消息
             # 让配置加载更灵活，自己可以更新配置。也可以利用定时任务更新。
-            print("文本消息")
+            # print("文本消息")
             # print(msg)
             if msg.sender in self.config.MANAGERS and msg.content == "/update":
                 # if msg.content == "^更新$":
