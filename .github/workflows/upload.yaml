@@ -1,0 +1,35 @@
+name: release
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "The tag version you want to build"
+  # push:
+  #   branches:
+  #     - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.1.1
+
+      - name: Get wechat 
+        run: |
+          wget https://github.com/tom-snow/wechat-windows-versions/releases/download/v3.9.2.23/WeChatSetup-3.9.2.23.exe
+          wget https://github.com/x-dr/wechat-bot/releases/download/${{ github.event.inputs.tag }}/wxbot.exe
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: ${{ github.event.inputs.tag }}
+          body_path: ./RELEASE.md
+          files: |
+            dist/wxbot.exe
+            WeChatSetup-*    
+          tag_name: ${{ github.event.inputs.tag }}
+
+ 

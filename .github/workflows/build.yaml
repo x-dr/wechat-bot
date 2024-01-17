@@ -1,0 +1,40 @@
+name: Build wxbot
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "The tag version you want to build"
+  # push:
+  #   branches:
+  #     - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.1.1
+
+
+      - name: Set up Python
+        uses: actions/setup-python@v5.0.0
+        with:
+          python-version: "3.10"          
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Build wxbot
+        run: pyinstaller wxbot.spec
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: ${{ github.event.inputs.tag }}
+          files: |
+            dist/wxbot.exe    
+          tag_name: ${{ github.event.inputs.tag }}
+
+ 
