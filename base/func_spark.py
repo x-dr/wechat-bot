@@ -136,6 +136,8 @@ class SparkApi:
         ws.question = question
         ws.domain = self.domain
         ws.run_forever(sslopt={"cert_reqs": ssl.CERT_NONE})
+        msg=answer
+        answer=""
         if hasattr(ws, 'has_error') and ws.has_error:
             # print(ws.has_error)
             # print("spark connection failed.")
@@ -143,7 +145,7 @@ class SparkApi:
                     "error": "spark connection failed."}
         return {
             "code": 1,
-            "data": answer
+            "data": msg
         }
 
 
