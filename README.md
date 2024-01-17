@@ -12,7 +12,7 @@
 1. 下载并安装 [WeChatSetup-3.9.2.23](https://github.com/tom-snow/wechat-windows-versions/releases/download/v3.9.2.23/WeChatSetup-3.9.2.23.exe) 和 [wxbot.exe](https://github.com/x-dr/wechat-bot/releases)
 > (wxbot.exe可能会报毒，信任即可;或者你可手动运行或编译)
 
-2. 下载并修改 config.yaml 配置机器人参数
+2. 下载并修改 [config.yaml](https://raw.githubusercontent.com/x-dr/wechat-bot/main/config.yaml) 配置机器人参数
 
 3. 双击 wxbot.exe 将自动启动微信和接口服务，扫码登录(wxbot.exe可能会报毒，信任即可)
 

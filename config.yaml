@@ -40,10 +40,11 @@ logging:
 
 
 bot:
-  name: wcferry  # 机器人名字
-  welcome: 回复 /help 查询指令 # 添加好友或加群后自动回复
+  config: # -----config配置这不填-----
+    callback:         # -----callback配置-----
+    http_port: 9999   # http api端口
+    http_host: 0.0.0.0  # http api监听地址
   managers: []  # 管理员列表，wxid，不是微信昵称
-
   groups:
     enable: []  # 允许响应的群 roomId，大概长这样：2xxxxxxxxx3@chatroom
   news:
@@ -74,14 +75,9 @@ sparkapi:
   Spark_url: wss://spark-api.xf-yun.com/v3.1/chat  
 
 
-tigerbot:  # -----tigerbot配置这行不填-----
-  key:  # key
-  model:  # tigerbot-7b-sft
 
 
 gemini: # -----bard配置这行不填-----
   api_key:  # api-key 创建地址：https://ai.google.dev/pricing?hl=en，创建后复制过来即可 
   url: https://gemini.451024.xyz #base_url
   model: gemini-pro # 选择模型，可选参数：gpt2/gpt2-medium/gpt2-large/gpt2-xl/t5-small/t5-base/t5-large/t5-3b/t5-11b
-  # 提示词尽可能用英文，bard对中文提示词的效果不是很理想，下方提示词为英语老师的示例，请按实际需要修改,默认设置的提示词为谷歌创造的AI大语言模型
-  # I want you to act as a spoken English teacher and improver. I will speak to you in English and you will reply to me in English to practice my spoken English. I want you to keep your reply neat, limiting the reply to 100 words. I want you to strictly correct my grammar mistakes, typos, and factual errors. I want you to ask me a question in your reply. Now let's start practicing, you could ask me a question first. Remember, I want you to strictly correct my grammar mistakes, typos, and factual errors.
