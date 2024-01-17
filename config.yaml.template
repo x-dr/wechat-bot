@@ -1,0 +1,87 @@
+logging:
+  version: 1
+  disable_existing_loggers: False
+
+  formatters:
+    simple:
+      format: "%(asctime)s %(message)s"
+      datefmt: "%Y-%m-%d %H:%M:%S"
+    error:
+      format: "%(asctime)s %(name)s %(levelname)s %(filename)s::%(funcName)s[%(lineno)d]:%(message)s"
+
+  handlers:
+    console:
+      class: logging.StreamHandler
+      level: INFO
+      formatter: simple
+      stream: ext://sys.stdout
+
+    info_file_handler:
+      class: logging.handlers.RotatingFileHandler
+      level: INFO
+      formatter: simple
+      filename: wx_info.log
+      maxBytes: 10485760  # 10MB
+      backupCount: 20
+      encoding: utf8
+
+    error_file_handler:
+      class: logging.handlers.RotatingFileHandler
+      level: ERROR
+      formatter: error
+      filename: wx_error.log
+      maxBytes: 10485760  # 10MB
+      backupCount: 20
+      encoding: utf8
+
+  root:
+    level: INFO
+    handlers: [console, info_file_handler, error_file_handler]
+
+
+bot:
+  name: wcferry  # 机器人名字
+  welcome: 回复 /help 查询指令 # 添加好友或加群后自动回复
+  managers: []  # 管理员列表，wxid，不是微信昵称
+
+  groups:
+    enable: []  # 允许响应的群 roomId，大概长这样：2xxxxxxxxx3@chatroom
+  news:
+    receivers: []  # 定时新闻接收人（roomid 或者 wxid）
+
+  report_reminder:
+    receivers: []  # 定时日报周报月报提醒（roomid 或者 wxid）
+
+history_msg:  # 历史消息记录
+  enable: True  # 是否开启历史消息记录
+  group: []  # 历史消息记录群组
+
+
+chatgpt:  # -----chatgpt配置这行不填-----
+  api_key:  # 填写你 ChatGPT 的 key
+  base_url:   # 如果你不知道这是干嘛的，就不要改
+  model: gpt-3.5-turbo-16k
+  prompt: 你是智能聊天机器人，你叫wcferry  # 根据需要对角色进行设定
+
+sparkapi:
+  #以下密钥信息从控制台获取
+  appid:      #填写控制台中获取的 APPID 信息
+  api_secret:   #填写控制台中获取的 APISecret 信息
+  api_key:    #填写控制台中获取的 APIKey 信息
+
+  #用于配置大模型版本，默认“general/generalv2/generalv3”
+  domain:  generalv3  
+  Spark_url: wss://spark-api.xf-yun.com/v3.1/chat  
+
+
+tigerbot:  # -----tigerbot配置这行不填-----
+  key:  # key
+  model:  # tigerbot-7b-sft
+
+
+gemini: # -----bard配置这行不填-----
+  api_key:  # api-key 创建地址：https://ai.google.dev/pricing?hl=en，创建后复制过来即可 
+  url: https://gemini.451024.xyz #base_url
+  model: gemini-pro # 选择模型，可选参数：gpt2/gpt2-medium/gpt2-large/gpt2-xl/t5-small/t5-base/t5-large/t5-3b/t5-11b
+  # 提示词尽可能用英文，bard对中文提示词的效果不是很理想，下方提示词为英语老师的示例，请按实际需要修改,默认设置的提示词为谷歌创造的AI大语言模型
+  # I want you to act as a spoken English teacher and improver. I will speak to you in English and you will reply to me in English to practice my spoken English. I want you to keep your reply neat, limiting the reply to 100 words. I want you to strictly correct my grammar mistakes, typos, and factual errors. I want you to ask me a question in your reply. Now let's start practicing, you could ask me a question first. Remember, I want you to strictly correct my grammar mistakes, typos, and factual errors.
