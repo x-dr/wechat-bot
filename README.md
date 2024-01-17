@@ -9,7 +9,7 @@
 
 ### 快速开始
 
-1. 下载并安装 WeChatSetup-3.9.2.23 和 [wxbot.exe](https://github.com/x-dr/wechat-bot/releases)
+1. 下载并安装 [WeChatSetup-3.9.2.23](https://github.com/tom-snow/wechat-windows-versions/releases/download/v3.9.2.23/WeChatSetup-3.9.2.23.exe) 和 [wxbot.exe](https://github.com/x-dr/wechat-bot/releases)
 > (wxbot.exe可能会报毒，信任即可;或者你可手动运行或编译)
 
 2. 下载并修改 config.yaml 配置机器人参数
@@ -40,7 +40,7 @@ pyinstaller wxbot.spec
 
 # 使用
 
-
+ <img src="docs/img/help_msg.png"  height="50%" width="50%">
 
 > 机器人体验
 
