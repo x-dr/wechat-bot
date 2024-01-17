@@ -12,8 +12,9 @@ class Config(object):
     def __init__(self) -> None:
         self.reload()
 
-    def _load_config(self) -> dict:
-        pwd = os.path.dirname(os.path.abspath(__file__))
+    def _load_config(self) -> dict:  
+        # pwd = os.path.dirname(os.path.abspath(__file__))
+        pwd=os.path.join(os.path.dirname(__file__))
         try:
             with open(f"{pwd}/config.yaml", "rb") as fp:
                 yconfig = yaml.safe_load(fp)
