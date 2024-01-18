@@ -20,7 +20,6 @@ from base.history_msg import set_history_msg
 
 class Robot():
     print("Robot")
-
     def __init__(self, wcf: Wcf) -> None:
         # print("Robot __init__")
         # print(self)
@@ -30,9 +29,13 @@ class Robot():
 
         self.config = Config()
         self.wcf = wcf
+
         self.wxid = self.wcf.get_self_wxid()
         self.allContacts = self.getAllContacts()
         self.LOG = logging.getLogger("Robot")
+
+
+
 
 
 
@@ -312,14 +315,3 @@ class Robot():
             else:
                 self.sendTextMsg(f"你没有权限", msg.sender)
 
-    def toJobRoom(self) -> bool:
-        """
-        发送定时消息
-        """
-        try:
-            roomid_list = self.config.BING
-            for roomid in roomid_list:
-                self.sendTextMsg("必应每日超清壁纸",roomid)
-                self.wcf.send_image("https://gh.tryxd.cn/https://raw.githubusercontent.com/x-dr/bing/main/images/latest.png",roomid)
-        except Exception as e:
-            self.LOG.error(f"发送定时消息出错：{e}")
