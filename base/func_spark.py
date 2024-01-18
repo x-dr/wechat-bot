@@ -13,7 +13,7 @@ from wsgiref.handlers import format_date_time
 # from configuration import Config
 
 import websocket  # 使用websocket_client
-answer = ""
+
 
 class SparkApi:
     # 初始化
@@ -26,6 +26,7 @@ class SparkApi:
         self.path = parsed_url.path
         self.Spark_url = conf["Spark_url"]
         self.domain = conf["domain"]
+        self.answer = ""
 
     # 生成url
     def create_url(self):
@@ -95,8 +96,7 @@ class SparkApi:
             status = choices["status"]
             content = choices["text"][0]["content"]
             # print(content,end ="")
-            global answer
-            answer += content
+            self.answer += content
             # print(1)
             if status == 2:
                 ws.close()
@@ -136,8 +136,6 @@ class SparkApi:
         ws.question = question
         ws.domain = self.domain
         ws.run_forever(sslopt={"cert_reqs": ssl.CERT_NONE})
-        msg=answer
-        answer=""
         if hasattr(ws, 'has_error') and ws.has_error:
             # print(ws.has_error)
             # print("spark connection failed.")
@@ -145,7 +143,7 @@ class SparkApi:
                     "error": "spark connection failed."}
         return {
             "code": 1,
-            "data": msg
+            "data": self.answer
         }
 
 
