@@ -52,6 +52,9 @@ bot:
 
   report_reminder:
     receivers: []  # 定时日报周报月报提醒（roomid 或者 wxid）
+  bing:
+    receivers: []  # 定时日报周报月报提醒（roomid 或者 wxid）
+
 
 history_msg:  # 历史消息记录
   enable: True  # 是否开启历史消息记录
@@ -59,13 +62,15 @@ history_msg:  # 历史消息记录
 
 
 chatgpt:  # -----chatgpt配置这行不填-----
-  api_key:  # 填写你 ChatGPT 的 key
-  base_url:   # 如果你不知道这是干嘛的，就不要改
-  model: gpt-3.5-turbo-16k
-  prompt: 你是智能聊天机器人，你叫wcferry  # 根据需要对角色进行设定
+  # openai的key，需要自己去获取 ，地址：https://beta.openai.com/account/api-keys
+  api_key:  sk-xxxxxxxxxxxxx  
+  # 反代的api,默认值 https://api.openai.com (境内无法访问) , https://openai.451024.xyz (境内可访问)
+  base_url:  https://api.openai.com 
+
 
 sparkapi:
   #以下密钥信息从控制台获取
+  #获取地址https://console.xfyun.cn/services/bm3
   appid:      #填写控制台中获取的 APPID 信息
   api_secret:   #填写控制台中获取的 APISecret 信息
   api_key:    #填写控制台中获取的 APIKey 信息

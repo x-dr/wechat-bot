@@ -33,12 +33,14 @@ class Robot():
         self.wxid = self.wcf.get_self_wxid()
         self.allContacts = self.getAllContacts()
         self.LOG = logging.getLogger("Robot")
-        # self.sendTextMsg("filehelper", "机器人启动成功")
+
+
+
     def processMsg(self, msg: WxMsg) -> None:
         msgdata = {}
-        msgdata["id"] = msg.id
-        msgdata["ts"] = msg.ts
-        msgdata["sign"] = msg.sign
+        # msgdata["id"] = msg.id
+        # msgdata["ts"] = msg.ts
+        # msgdata["sign"] = msg.sign
         msgdata["type"] = msg.type
         msgdata["xml"] = msg.xml
         msgdata["sender"] = msg.sender
@@ -218,7 +220,9 @@ class Robot():
         """
         raw_msg = msg.content.replace("/ai", "")
         send_msg = ai_chat(raw_msg, msg.sender)
+        # print(send_msg)
         sender = msg.roomid if msg.from_group() else msg.sender
+
         self.sendTextMsg(f"{send_msg}", sender)
 
     def sayHiToNewFriend(self, msg: WxMsg) -> None:
@@ -308,3 +312,14 @@ class Robot():
             else:
                 self.sendTextMsg(f"你没有权限", msg.sender)
 
+    def toJobRoom(self) -> bool:
+        """
+        发送定时消息
+        """
+        try:
+            roomid_list = self.config.BING
+            for roomid in roomid_list:
+                self.sendTextMsg("必应每日超清壁纸",roomid)
+                self.wcf.send_image("https://gh.tryxd.cn/https://raw.githubusercontent.com/x-dr/bing/main/images/latest.png",roomid)
+        except Exception as e:
+            self.LOG.error(f"发送定时消息出错：{e}")

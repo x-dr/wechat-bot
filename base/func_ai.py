@@ -6,6 +6,7 @@ from utils.utils import json_load, json_upload
 from utils.path import *
 import json
 import datetime
+import time
 import os
 from configuration import Config
 
@@ -43,6 +44,7 @@ def ai_chat(message, id):
                     set_history_msg(id, msgMap)
                     bot_msg = {"role": "assistant", "content": f"{msg}"}
                     get_history_msg(id).append(bot_msg)
+                    spark_api.answer = ""
                     return msg
                 else:
                     msg = "error"
@@ -57,6 +59,7 @@ def ai_chat(message, id):
                 msg_json = gemini_api.get_answer(msgMap)
                 if 'candidates' in msg_json and msg_json['candidates'] and 'content' in msg_json['candidates'][0]:
                     msg = msg_json['candidates'][0]['content']['parts'][0]['text']
+                    # print(msg)
                     set_history_msg(id, msgMap)
                     bot_msg = msg_json['candidates'][0]['content']
                     get_history_msg(id).append(bot_msg)
@@ -68,7 +71,7 @@ def ai_chat(message, id):
                 pass
 
     except Exception as e:
-        print(e)
+        print(f"AI error：{e}")
         return "error"
 
 
@@ -123,8 +126,7 @@ def switch_model(model: str = None, id=None) -> None:
         return "你已被加入黑名单，无法使用AI功能！"
     else:
         try:
-            if model == "gemini":
-                set_history_msg(id, [])
+            set_history_msg(id, [])
             if not os.path.exists(model_data_path):
                 os.makedirs(model_data_path)
             if not os.path.exists(model_data_path / f"{id}_model.json"):

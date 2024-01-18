@@ -14,11 +14,11 @@ class Config(object):
         self.reload()
 
     def _load_config(self) -> dict:
-        pwd = os.path.dirname(sys.executable)
+        # pwd = os.path.dirname(sys.executable)
     
     # 拼接相对路径
         # pwd = os.path.join(exe_dir, 'config.yaml')
-        # pwd = os.path.dirname(os.path.abspath(__file__))
+        pwd = os.path.dirname(os.path.abspath(__file__))
         try:
             with open(f"{pwd}/config.yaml", "rb") as fp:
                 yconfig = yaml.safe_load(fp)
@@ -37,6 +37,7 @@ class Config(object):
         self.MANAGERS=yconfig["bot"]["managers"]
         self.GROUPS = yconfig["bot"]["groups"]["enable"]
         self.NEWS = yconfig["bot"]["news"]["receivers"]
+        self.BING = yconfig["bot"]["bing"]["receivers"]
         self.REPORT_REMINDERS = yconfig["bot"]["report_reminder"]["receivers"]
         
         self.BOT_CONFIG = yconfig["bot"]["config"]

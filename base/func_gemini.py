@@ -22,7 +22,7 @@ class Gemini:
                 "temperature": 0.9,
             }
         }
-        print(data)
+        # print(data)
         try:
             response = requests.post(url,headers=headers, data=json.dumps(data))
             # candidates[0].content.parts[0].text

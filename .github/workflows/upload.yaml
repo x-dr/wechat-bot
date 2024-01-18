@@ -21,13 +21,20 @@ jobs:
         run: |
           wget https://github.com/tom-snow/wechat-windows-versions/releases/download/v3.9.2.23/WeChatSetup-3.9.2.23.exe
           wget https://github.com/x-dr/wechat-bot/releases/download/${{ github.event.inputs.tag }}/wxbot.exe
+          mkdir  wechat-bot
+          cp *.exe wechat-bot/
+          cp config.yaml wechat-bot/
+          zip -r wechat-bot.zip wechat-bot/
 
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
+          body_path: ./RELEASE.md
           name: ${{ github.event.inputs.tag }}
           files: |
-            dist/wxbot.exe
+            wxbot.exe
+            config.yaml
+            wechat-bot.zip
             WeChatSetup-*    
           tag_name: ${{ github.event.inputs.tag }}
 
