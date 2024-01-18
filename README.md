@@ -41,7 +41,7 @@ pyinstaller wxbot.spec
 # 使用
 
  <img src="docs/img/help_msg.png"  height="50%" width="50%">
- <img src="docs/img/help_ai.png"  height="50%" width="50%">
+ <img src="docs/img/help_ai.jpg"  height="50%" width="50%">
 
 > 机器人体验
 
