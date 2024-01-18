@@ -61,7 +61,7 @@ def main():
     
     #定时任务
     job.onEveryMinutes(10, clear_history)
-    job.onEveryTime("01:00", robot.toJobRoom)
+    job.onEveryTime("01:20", robot.toJobRoom)
     job.runPendingJobs()
 
 

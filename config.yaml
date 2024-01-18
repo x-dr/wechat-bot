@@ -53,7 +53,7 @@ bot:
   report_reminder:
     receivers: []  # 定时日报周报月报提醒（roomid 或者 wxid）
   bing:
-    receivers: []  # 定时日报周报月报提醒（roomid 或者 wxid）
+    receivers: []  # 定时bing壁纸（roomid 或者 wxid）
 
 
 history_msg:  # 历史消息记录
