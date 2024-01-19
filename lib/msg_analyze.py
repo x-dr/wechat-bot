@@ -101,3 +101,14 @@ def set_blackList(id, status):
         print(e)
         return 0
     
+
+
+def speak_most_today(gid):
+    today = datetime.date.today().strftime('%Y-%m-%d')
+    dic_ = json_load(group_message_data_path / f"{gid}" / f"{today}.json")
+    top = sorted(dic_.items(), key=lambda x: x[1], reverse=True)
+
+    if len(top) == 0:
+        return {'wxid': None, 'count': 0}
+    else:
+        return {'wxid': top[0][0], 'count': top[0][1]}

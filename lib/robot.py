@@ -15,7 +15,7 @@ from configuration import Config
 # from .get_plugin import get_plugin
 
 from base.func_ai import ai_chat,switch_model
-from .msg_analyze import get_group_message_data, get_cmd,set_blackList
+from .msg_analyze import get_group_message_data, get_cmd,set_blackList,speak_most_today
 from base.history_msg import set_history_msg
 
 class Robot():
@@ -78,7 +78,10 @@ class Robot():
 /sw:chatgpt 切换为 gpt-3.5-turbo 模型
 /sw:spark 切换为 spark 模型
 /sw 随机选择模型
-/new 重置上下文内容"""
+/new 重置上下文内容
+/ban @用户 将用户加入黑名单
+/unban @用户 将用户移出黑名单
+水王  查看今天说话最多的人"""
 
             sender = msg.roomid if msg.from_group() else msg.sender
             at_id = msg.sender if msg.from_group() else ""
@@ -99,6 +102,9 @@ class Robot():
                 if msg.content=="/new":
                     set_history_msg(msg.sender,[])
                     self.sendTextMsg(f"已清空对话",msg.roomid, msg.sender)
+
+                if msg.content=="水王":
+                    self.get_speak_most_today(msg.roomid)
 
 
             if msg.roomid in self.config.GROUPS:
@@ -131,6 +137,9 @@ class Robot():
                                 self.sendTextMsg(f"\n已将{aliasname}\n移出黑名单", msg.roomid)                       
                     else:
                         self.sendTextMsg(f"你没有权限", msg.roomid)
+                elif msg.content=="水王":
+                    # print(msg.roomid)
+                    self.get_speak_most_today(msg.roomid)
                 else:
                     pass
 
@@ -177,7 +186,10 @@ class Robot():
 /sw:chatgpt 切换为 gpt-3.5-turbo 模型
 /sw:spark 切换为 spark 模型
 /sw 随机选择模型
-/new 重置上下文内容"""
+/new 重置上下文内容
+/ban @用户 将用户加入黑名单
+/unban @用户 将用户移出黑名单
+水王  查看今天说话最多的人"""
                     self.sendTextMsg(f"你好，我是机器人;\n发送：\n{message.strip()}", msg.sender)
 
     def sendTextMsg(self, msg: str, receiver: str, at_list: str = ""):
@@ -315,3 +327,13 @@ class Robot():
             else:
                 self.sendTextMsg(f"你没有权限", msg.sender)
 
+    def get_speak_most_today(self, roomid) -> None:
+        """
+        获取当天说话最多的人
+        """
+        m_wxid=speak_most_today(roomid)
+        if m_wxid['wxid']:
+            aliasname=self.wcf.get_alias_in_chatroom(m_wxid['wxid'], roomid)
+            self.sendTextMsg(f"今天说话最多的人是：{aliasname}，说了{m_wxid['count']}句", roomid)
+        else:
+            self.sendTextMsg(f"今天没有人说话", roomid)
