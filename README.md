@@ -3,6 +3,12 @@
 <img src="https://img1.131213.xyz/file/9c3e8df16c352c05233ed.png" height="50%" width="50%" /></a>
 
 
+
+
+# 项目已暂停维护，推荐使用隔壁大佬的 [wechat-rest](https://github.com/opentdp/wechat-rest) 项目
+
+
+
 # Wechat Bot
 
 一个 基于 AI 智能回复、支持上下文回复的微信机器人,可以用来帮助你自动回复微信消息。
